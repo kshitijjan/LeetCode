@@ -10,18 +10,25 @@
  * };
  */
 class Solution {
-public:
-    int maxDepth(TreeNode* root) {
-        
+    private:
+    int inorder(TreeNode* root){
+
         if(root == NULL){
             return NULL;
         }
 
-        int left = maxDepth(root->left);
-        int right = maxDepth(root->right);
+        int left = inorder(root->left);
+        int right = inorder(root->right);
 
         int ans = max(left, right) + 1;
 
         return ans;
+    }
+public:
+    int maxDepth(TreeNode* root) {
+        
+        return inorder(root);
+
+
     }
 };
